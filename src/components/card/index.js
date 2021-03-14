@@ -1,11 +1,14 @@
-import Form from "../form";
+import Form from "./form";
+import ViewInfo from "./viewInfo";
+
+import { CardContainer } from "./styles";
 
 const Card = () => {
   return (
-    <div>
-      <h3>Card</h3>
+    <CardContainer>
+      <ViewInfo />
       <Form />
-    </div>
+    </CardContainer>
   );
 };
 
