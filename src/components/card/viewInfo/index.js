@@ -1,10 +1,19 @@
+import { useContext } from "react";
+import { WeatherContext } from "../../../context/weatherContext";
 import { CityTemp, CityTitle, ViewInfoContainer } from "./styles";
 
 const ViewInfo = () => {
+  const { loading, data, error } = useContext(WeatherContext);
   return (
     <ViewInfoContainer>
-      <CityTitle>Buenos Aires</CityTitle>
-      <CityTemp>25°</CityTemp>
+      {loading && <div>LOADING...</div>}
+      {data && (
+        <>
+          <CityTitle>{data.name}</CityTitle>
+          <CityTemp>{data.main.temp}</CityTemp>
+        </>
+      )}
+      {error && <div>ERROR...</div>}
     </ViewInfoContainer>
   );
 };
