@@ -18,7 +18,7 @@ const ViewHistoricInfo = () => {
       let days = res.data.daily;
       setDays(days);
     });
-  }, []);
+  }, [endpoint]);
 
   return (
     <HistoryContainer>
@@ -26,7 +26,7 @@ const ViewHistoricInfo = () => {
       {
         <div>
           {days.slice(0, 5).map((day) => (
-            <HistoricFormatter key={day.id} temp={day.temp.day} />
+            <HistoricFormatter key={day.temp.day} temp={day.temp.day} />
           ))}
         </div>
       }
