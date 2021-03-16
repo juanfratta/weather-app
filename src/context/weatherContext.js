@@ -1,5 +1,5 @@
 import { createContext, useReducer } from "react";
-import { get_temp, set_city } from "../reducer/tempActions";
+import { getTemp, setCity } from "../reducer/tempActions";
 import { tempReducer } from "../reducer/tempReducer";
 
 export const WeatherContext = createContext();
@@ -16,14 +16,17 @@ export const WeatherProvider = ({ children }) => {
   const [state, dispatch] = useReducer(tempReducer, initialState);
   const { loading, data, error, city, url } = state;
 
-  const set_city_and_get_weather = (city) => {
-    set_city(city, dispatch);
-    get_temp(state, dispatch);
+  const setCityContext = (city) => {
+    setCity(city, dispatch);
+  };
+
+  const getWeather = () => {
+    getTemp(state, dispatch);
   };
 
   return (
     <WeatherContext.Provider
-      value={{ loading, data, error, city, url, set_city_and_get_weather }}
+      value={{ loading, data, error, city, url, setCityContext, getWeather }}
     >
       {children}
     </WeatherContext.Provider>

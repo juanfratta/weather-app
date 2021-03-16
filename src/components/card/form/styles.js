@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const FormContainer = styled.div`
-  height: 50%;
+  height: 40%;
   display: flex;
   flex-flow: column;
   justify-content: space-around;
@@ -10,6 +10,7 @@ export const FormContainer = styled.div`
 export const CityLabel = styled.p`
   color: grey;
   font-family: "Roboto", sans-serif;
+  margin: 2px;
 `;
 
 export const CityInput = styled.input`
@@ -26,4 +27,7 @@ export const ButtonGetWeather = styled.button`
   background-color: yellowgreen;
   padding: 15px;
   color: white;
+  &:disabled {
+    opacity: 0.5;
+  }
 `;

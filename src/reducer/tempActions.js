@@ -1,4 +1,5 @@
 import axios from "axios";
+import { BASE_URL, KEY } from "../utils/variables";
 
 export const GET_TEMP_BEGIN = "GET_TEMP_BEGIN";
 export const GET_TEMP_SUCCESS = "GET_TEMP_SUCCESS";
@@ -6,9 +7,7 @@ export const GET_TEMP_FAILURE = "GET_TEMP_FAILURE";
 export const SET_CITY_SUCCESS = "SET_CITY_SUCCESS";
 export const SET_CITY_ERROR = "SET_CITY_ERROR";
 
-const key = "fd3f6fc9e72f95aca6d3b73746616725";
-
-export const set_city = (city, dispatch) => {
+export const setCity = (city, dispatch) => {
   try {
     dispatch({
       type: SET_CITY_SUCCESS,
@@ -22,14 +21,13 @@ export const set_city = (city, dispatch) => {
   }
 };
 
-export const get_temp = async (state, dispatch) => {
+export const getTemp = async (state, dispatch) => {
   try {
     dispatch({
       type: GET_TEMP_BEGIN,
     });
 
-    const base_url = "http://api.openweathermap.org/data/2.5/weather?q=";
-    const endpoint = `${base_url}${state.city}&APPID=${key}`;
+    const endpoint = `${BASE_URL}${state.city}&APPID=${KEY}`;
     const res = await axios.get(endpoint);
 
     dispatch({

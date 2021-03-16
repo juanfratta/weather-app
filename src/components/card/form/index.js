@@ -8,20 +8,36 @@ import {
 } from "./styles";
 
 const Form = () => {
-  const { set_city_and_get_weather } = useContext(WeatherContext);
-  const [city, setCity] = useState("");
+  const { setCityContext, getWeather } = useContext(WeatherContext);
+  const [city, setCityLocalState] = useState("");
+
+  const setCity = (e) => {
+    setCityLocalState(e.target.value);
+    setCityContext(e.target.value);
+  };
+
+  const getWeatherContext = (city) => {
+    getWeather(city);
+    setCityLocalState("");
+  };
 
   return (
     <FormContainer>
       <div>
-        <CityLabel>Ingrese una ciudad:</CityLabel>
+        <CityLabel>Enter a city name:</CityLabel>
         <CityInput
           placeholder="Your city ..."
           value={city}
-          onChange={(e) => setCity(e.target.value)}
+          onChange={(e) => setCity(e)}
+          onKeyDown={(e) =>
+            e.key === "Enter" && city !== "" && getWeatherContext(city)
+          }
         />
       </div>
-      <ButtonGetWeather onClick={() => set_city_and_get_weather(city)}>
+      <ButtonGetWeather
+        disabled={!city}
+        onClick={() => getWeatherContext(city)}
+      >
         Get Weather
       </ButtonGetWeather>
     </FormContainer>
